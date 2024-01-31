@@ -1,27 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 18:54:55 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/01/25 18:54:58 by ale-tron         ###   ########.fr       */
+/*   Created: 2023/09/30 14:29:37 by ale-tron          #+#    #+#             */
+/*   Updated: 2023/09/30 15:26:45 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <unistd.h>
 
-#ifndef PIPEX_H
-# define PIPEX_H
-
-# include "../libft/libft.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <sys/types.h>
-
-
-
-
-
-
-
-#endif
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}

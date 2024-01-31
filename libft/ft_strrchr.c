@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 18:54:55 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/01/25 18:54:58 by ale-tron         ###   ########.fr       */
+/*   Created: 2023/09/21 13:34:36 by ale-tron          #+#    #+#             */
+/*   Updated: 2023/09/21 13:46:08 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#ifndef PIPEX_H
-# define PIPEX_H
+char	*ft_strrchr(const char *s, int c)
+{
+	int	i;
 
-# include "../libft/libft.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <sys/types.h>
-
-
-
-
-
-
-
-#endif
+	i = 0;
+	while (s[i])
+		i++;
+	if ((char)c == '\0')
+		return ((char *)(s + i));
+	while (i >= 0)
+	{
+		if (s[i] == (char)c)
+			return ((char *)(s + i));
+		i--;
+	}
+	return (NULL);
+}

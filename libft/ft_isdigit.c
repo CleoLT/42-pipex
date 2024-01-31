@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 18:54:55 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/01/25 18:54:58 by ale-tron         ###   ########.fr       */
+/*   Created: 2023/09/14 17:08:14 by ale-tron          #+#    #+#             */
+/*   Updated: 2023/09/14 17:18:17 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
-
-# include "../libft/libft.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <sys/types.h>
-
-
-
-
-
-
-
-#endif
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}

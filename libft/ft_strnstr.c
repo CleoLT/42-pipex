@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 18:54:55 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/01/25 18:54:58 by ale-tron         ###   ########.fr       */
+/*   Created: 2023/09/21 17:08:52 by ale-tron          #+#    #+#             */
+/*   Updated: 2023/09/21 17:37:29 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "string.h"
 
-#ifndef PIPEX_H
-# define PIPEX_H
+char	*ft_strnstr(const char *str, const char *to_find, size_t len)
+{
+	size_t	i;
+	size_t	j;
 
-# include "../libft/libft.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <sys/types.h>
-
-
-
-
-
-
-
-#endif
+	i = 0;
+	if (to_find[i] == '\0')
+		return ((char *)str);
+	while (str[i] && i < len)
+	{
+		j = 0;
+		while (str[i + j] && str[i + j] == to_find[j] && i + j < len)
+		{
+			j++;
+			if (to_find[j] == '\0')
+				return ((char *)(str + i));
+		}
+		i++;
+	}
+	return (NULL);
+}

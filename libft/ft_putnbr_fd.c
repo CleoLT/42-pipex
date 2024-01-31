@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 18:54:55 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/01/25 18:54:58 by ale-tron         ###   ########.fr       */
+/*   Created: 2023/09/30 15:46:46 by ale-tron          #+#    #+#             */
+/*   Updated: 2023/10/02 09:32:15 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <unistd.h>
+#include "libft.h"
 
-#ifndef PIPEX_H
-# define PIPEX_H
+void	ft_putnbr_fd(int n, int fd)
+{
+	char		num[10];
+	int			index;
+	long int	nb;
 
-# include "../libft/libft.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <sys/types.h>
-
-
-
-
-
-
-
-#endif
+	nb = n;
+	index = 0;
+	if (nb < 0)
+	{
+		write(fd, "-", 1);
+		nb = -nb;
+	}
+	if (nb == 0)
+		write(fd, "0", 1);
+	while (nb > 0)
+	{
+		num[index] = nb % 10 + '0';
+		nb /= 10;
+		index++;
+	}
+	while (index > 0)
+	{
+		index--;
+		write(fd, &num[index], 1);
+	}
+}

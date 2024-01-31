@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 18:54:55 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/01/25 18:54:58 by ale-tron         ###   ########.fr       */
+/*   Created: 2023/09/27 11:11:55 by ale-tron          #+#    #+#             */
+/*   Updated: 2023/09/27 14:55:48 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#ifndef PIPEX_H
-# define PIPEX_H
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	char	*new;
+	size_t	start;
+	size_t	len;
 
-# include "../libft/libft.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <sys/types.h>
-
-
-
-
-
-
-
-#endif
+	start = 0;
+	len = 0;
+	if (ft_strlen(s1) > 0)
+		len = ft_strlen(s1) - 1;
+	while (s1[start] && ft_strchr(set, s1[start]))
+		start++;
+	while (s1[len] && ft_strchr(set, s1[len]))
+		len--;
+	new = ft_substr(s1, start, len - start + 1);
+	return (new);
+}
