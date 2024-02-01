@@ -2,7 +2,7 @@ NAME = pipex
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 
 RM = rm -rf
 
@@ -12,7 +12,7 @@ LIBFT_DIR = libft/
 
 OBJ_DIR = obj/
 
-SRC = pipex.c
+SRC = pipex.c path.c
 
 INCLUDE = inc/pipex.h Makefile libft/*.c
 

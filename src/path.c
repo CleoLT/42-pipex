@@ -6,10 +6,20 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 17:13:36 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/01 17:14:28 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/01 17:47:39 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex.h"
+
+void	free_array(char **array)
+{
+	int	i;
+	
+	i = -1;
+	while (array[++i])
+		free(array[i]);
+	free(array);
+}
 
 static char	**get_env(char **envp)
 {
@@ -36,28 +46,23 @@ char	*get_path(char *cmd, char **envp)
 	char	*cmd_path;
 
 	cmd_path = ft_strjoin("/", cmd);
-	i = 0;
 	all_env = get_env(envp);
+	i = 0;
 	while (all_env[i])
 	{
 		path = ft_strjoin(all_env[i], cmd_path);
 		if (access(path, F_OK) == 0)
 		{
-			printf("%s\n", path);
-			break;
+			free(cmd_path);
+			free_array(all_env);		
+			return (path);
 		}
 		free(path);
 		i++;
 	}
 	free(cmd_path);
-	i = 0;
-	while (all_env[i])
-	{
-		free(all_env[i]);
-		i++;
-	}
-	free(all_env);
-	return (path);
+	free_array(all_env);
+	return (NULL);
 }
 
 
