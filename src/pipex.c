@@ -6,30 +6,30 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:51:20 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/01 17:38:59 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:38:53 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex.h"
 
-void	process(char *cmd, char **envp)
+static void	process(char *command, char **envp)
 {
 	char	*path;
-
-	path = get_path(cmd, envp);
-	if (!path) 
-		return ;
+	char	**cmd;
+	
+	path = get_path(command, envp);
 	printf("process: %s\n", path);
-	free(path);
-
-//	char **cmd = ft_split(argv[1], ' ');
-/*	if (access(cmd[0], F_OK) == 0)
+	cmd = ft_split(command, ' ');
+	if (access(cmd[0], F_OK) == 0)
+	{
 		if (execve(cmd[0], cmd, envp) == -1)
 			exit(90);
-	else if (execve("/bin/ls", cmd, envp) == -1)
-		exit(89);
+	}
+	else if (execve(path, cmd, envp) == -1)
+		perror(cmd[0]);
 	else
 		perror(cmd[0]);
-*/
+
+	free(path);
 }
 
 
@@ -40,7 +40,6 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc != 5)
 		return (3);	
-//	print_env(envp);
 	if (pipe(pipe_fd) == -1)
 		return (1);
 	pid = fork();

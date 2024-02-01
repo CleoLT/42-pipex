@@ -6,12 +6,12 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 17:13:36 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/01 17:47:39 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:39:03 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex.h"
 
-void	free_array(char **array)
+static void	free_array(char **array)
 {
 	int	i;
 	
@@ -44,7 +44,9 @@ char	*get_path(char *cmd, char **envp)
 	char	**all_env;
 	char	*path;
 	char	*cmd_path;
-
+	
+	if (cmd[0] == '\0')
+		return (NULL);
 	cmd_path = ft_strjoin("/", cmd);
 	all_env = get_env(envp);
 	i = 0;
@@ -62,7 +64,6 @@ char	*get_path(char *cmd, char **envp)
 	}
 	free(cmd_path);
 	free_array(all_env);
+//	perror(cmd);
 	return (NULL);
 }
-
-
