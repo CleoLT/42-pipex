@@ -12,7 +12,7 @@ LIBFT_DIR = libft/
 
 OBJ_DIR = obj/
 
-SRC = pipex.c path.c
+SRC = pipex.c path.c utils.c
 
 INCLUDE = inc/pipex.h Makefile libft/*.c
 

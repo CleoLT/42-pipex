@@ -6,10 +6,11 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 15:23:05 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/02 14:38:37 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/02 19:22:07 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+#include <stdio.h>
 
 size_t	count_words(const char *str, char c)
 {
@@ -18,6 +19,8 @@ size_t	count_words(const char *str, char c)
 
 	i = 0;
 	count = 0;
+	if (str[0] && str[1] == '\0')
+		return (1);
 	while (str[i])
 	{
 		if (str[i + 1] == c && str[i] != c)
