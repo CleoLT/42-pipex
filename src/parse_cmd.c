@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path.c                                             :+:      :+:    :+:   */
+/*   parse_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 17:13:36 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/03 12:20:36 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:26:17 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex.h"
@@ -31,15 +31,13 @@ static char	**get_env(char **envp)
 	return (NULL);
 }
 
-char	*get_path(char *cmd, char **envp)
+char	*parse_cmd(char *cmd, char **envp)
 {
 	int		i;
 	char	**all_env;
 	char	*path;
 	char	*cmd_path;
 
-	if (access(cmd, F_OK) == 0)
-		return (cmd);
 	cmd_path = ft_strjoin("/", cmd);
 	all_env = get_env(envp);
 	if (!all_env)
