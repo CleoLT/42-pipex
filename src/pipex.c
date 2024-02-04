@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:51:20 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/04 18:21:24 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:35:10 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex.h"
@@ -54,7 +54,6 @@ static void	child_process(char **argv, char **envp, int *pipe_fd)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		exit(-1);
-	printf("holi");
 	path = get_path(argv[2], envp);
 	if (dup2(pipe_fd[WRITE_END], STDOUT_FILENO) == -1)
 		exit(-1);
