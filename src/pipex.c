@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:51:20 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/07 13:12:46 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:51:49 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex.h"
@@ -30,7 +30,7 @@ static char	*get_path(char *command, char **envp)
 		exit(-1);
 	cmd = ft_split(command, ' ');
 	if (access(cmd[0], F_OK) == 0)
-		path = cmd[0];
+		path = ft_strdup(cmd[0]);
 	else
 		path = parse_cmd(cmd[0], envp);
 	if (!path)
