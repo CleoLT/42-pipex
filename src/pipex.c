@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:51:20 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/04 20:01:58 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/02/07 13:12:46 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex.h"
@@ -67,11 +67,8 @@ static void	parent_process(char **argv, char **envp, int *pipe_fd)
 {
 	int		fd;
 	char	*path;
-//	int		*status;
 
-//	status = NULL;
 	close(pipe_fd[WRITE_END]);
-//	wait(status);
 	fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (access(argv[4], W_OK) != 0)
 		print_error("permission denied: ", argv[4], 1);
@@ -102,15 +99,10 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	if (pid == 0)
 		child_process(argv, envp, pipe_fd);
-	if (ft_strncmp(argv[1], argv[4], ft_strlen(argv[1])) == 0)
-	{
-		printf("NO WEY");
+	if (ft_strncmp(argv[1], argv[4], ft_strlen(argv[1]) + 1) == 0)
 		wait(status);
-	}
 	if (pid > 0)
 		parent_process(argv, envp, pipe_fd);
-
-//	wait(status);
 	close(pipe_fd[0]);
 	close(pipe_fd[1]);
 	return (0);
