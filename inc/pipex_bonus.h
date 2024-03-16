@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:54:55 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/03/15 15:15:01 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/03/16 14:07:57 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define READ_END 0
 
 char	*parse_cmd(char *cmd, char **envp);
+char	*get_path(char *command, char **envp);
 void	free_array(char **array);
 void	print_error(char *str, char *cmd, int exit_code);
 
