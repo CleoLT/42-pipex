@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 17:13:36 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/03/16 14:07:57 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/03/16 14:13:20 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex_bonus.h"
@@ -65,7 +65,6 @@ char	*get_path(char *command, char **envp)
 	char	*path;
 	char	**cmd;
 
-
 	if (command[0] == '\0')
 		exit(-1);
 	cmd = ft_split(command, ' ');
@@ -79,4 +78,3 @@ char	*get_path(char *command, char **envp)
 	free_array(cmd);
 	return (path);
 }
-

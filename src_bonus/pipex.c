@@ -6,12 +6,10 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:51:20 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/03/16 14:08:24 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/03/16 14:12:34 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex_bonus.h"
-
-
 
 static void	exec_cmd(char *command, char **envp)
 {
@@ -28,7 +26,6 @@ static void	exec_cmd(char *command, char **envp)
 
 static void	child_process(char *arg, char **envp, int *pipe_fd)
 {
-	
 	close(pipe_fd[READ_END]);
 	if (dup2(pipe_fd[WRITE_END], STDOUT_FILENO) == -1)
 		exit(1);
@@ -50,7 +47,7 @@ static void	open_infile(char **argv)
 		exit (1);
 }
 
-static void make_pipe(char **argv, char **envp, int i)
+static void	make_pipe(char **argv, char **envp, int i)
 {
 	int		pipe_fd[2];
 	pid_t	pid;
@@ -63,7 +60,7 @@ static void make_pipe(char **argv, char **envp, int i)
 	if (pid == 0)
 	{
 		if (i == 2)
-			open_infile(argv);	
+			open_infile(argv);
 		child_process(argv[i], envp, pipe_fd);
 	}
 	if (pid > 0)
@@ -76,10 +73,10 @@ static void make_pipe(char **argv, char **envp, int i)
 
 int	main(int argc, char **argv, char **envp)
 {
-	int		fd_out;
-	int		i;
+	int	fd_out;
+	int	i;
 	int	status;
-	
+
 	if (argc < 5)
 		return (1);
 	i = 2;
@@ -94,7 +91,7 @@ int	main(int argc, char **argv, char **envp)
 		print_error("permission denied: ", argv[argc - 1], 1);
 	if (fd_out == -1)
 		exit(1);
-	if (dup2(fd_out, STDOUT_FILENO) == -1) 
+	if (dup2(fd_out, STDOUT_FILENO) == -1)
 		exit(1);
 	exec_cmd(argv[i], envp);
 	return (0);

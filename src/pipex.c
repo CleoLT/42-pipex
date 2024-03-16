@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:51:20 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/02/28 15:54:03 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/03/16 14:10:52 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex.h"
@@ -23,24 +23,6 @@ static void	exec_cmd(char *path, char *command, char **envp)
 
 static char	*get_path(char *command, char **envp)
 {
-/*	char	*path;
-	char	**cmd;
-
-	if (command[0] == '\0')
-		exit(-1);
-	cmd = ft_split(command, ' ');
-	if (access(cmd[0], F_OK) == 0)
-		path = ft_strdup(cmd[0]);
-	else
-		path = parse_cmd(cmd[0], envp);
-	if (!path)
-		print_error("command not found: ", cmd[0], 127);
-	else if (access(path, X_OK) != 0)
-		print_error("permission denied: ", path, 126);
-	free_array(cmd);
-	return (path);
-*/
-// TEST cmd error si hay un archivo que se llama igual que un comando. ej : ls 
 	char	*path;
 	char	**cmd;
 
