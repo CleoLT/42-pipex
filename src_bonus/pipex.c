@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:51:20 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/03/16 14:12:34 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:42:38 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex_bonus.h"
@@ -88,7 +88,12 @@ int	main(int argc, char **argv, char **envp)
 	wait(&status);
 	fd_out = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (access(argv[argc - 1], W_OK) != 0)
-		print_error("permission denied: ", argv[argc - 1], 1);
+	{
+		ft_error(argv[argc - 1], errno);
+	//	perror(argv[argc - 1]);
+	//	exit(errno);
+		//print_error("permission denied: ", argv[argc - 1], errno);
+	}
 	if (fd_out == -1)
 		exit(1);
 	if (dup2(fd_out, STDOUT_FILENO) == -1)
