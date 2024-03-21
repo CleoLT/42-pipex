@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:54:55 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/03/18 11:46:51 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/03/21 12:10:52 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 # define WRITE_END 1
 # define READ_END 0
 
+# define INFILE_MODE	2
+# define HEREDOC_MODE	3
+
+void	exec_cmd(char *command, char **envp);
 char	*parse_cmd(char *cmd, char **envp);
 char	*get_path(char *command, char **envp);
 void	free_array(char **array);

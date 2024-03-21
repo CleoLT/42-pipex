@@ -6,10 +6,23 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 17:13:36 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/03/16 14:13:20 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/03/21 12:15:52 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex_bonus.h"
+
+void	exec_cmd(char *command, char **envp)
+{
+	char	**cmd;
+	char	*path;
+
+	path = get_path(command, envp);
+	cmd = ft_split(command, ' ');
+	if (execve(path, cmd, envp) == -1)
+		exit(-1);
+	free_array(cmd);
+	free(path);
+}
 
 static char	**get_env(char **envp)
 {
@@ -69,7 +82,7 @@ char	*get_path(char *command, char **envp)
 		exit(-1);
 	cmd = ft_split(command, ' ');
 	path = parse_cmd(cmd[0], envp);
-	if (!path && access(cmd[0], F_OK) == 0)
+	if (!path && access(cmd[0], X_OK) == 0)
 		path = ft_strdup(cmd[0]);
 	if (!path)
 		print_error("command not found: ", cmd[0], 127);
