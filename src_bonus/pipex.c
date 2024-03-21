@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:51:20 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/03/21 12:23:42 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/03/21 13:40:43 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex_bonus.h"
@@ -91,7 +91,6 @@ int	main(int argc, char **argv, char **envp)
 {
 	int	fd_out;
 	int	i;
-	int	status;
 
 	if (argc < 5)
 		return (1);
@@ -104,13 +103,13 @@ int	main(int argc, char **argv, char **envp)
 	}
 	while (i < argc - 2)
 		make_pipe(argv, envp, i++);
-	wait(&status);
-	fd_out = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (!ft_strncmp(argv[1], "here_doc", 8))
+		fd_out = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
+	else
+		fd_out = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (access(argv[argc - 1], W_OK) != 0)
 		ft_error(argv[argc - 1], errno);
-	if (fd_out == -1)
-		exit(1);
-	if (dup2(fd_out, STDOUT_FILENO) == -1)
+	if (fd_out == -1 || (dup2(fd_out, STDOUT_FILENO) == -1))
 		exit(1);
 	exec_cmd(argv[i], envp);
 	return (0);
