@@ -6,7 +6,7 @@
 /*   By: ale-tron <ale-tron@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:51:20 by ale-tron          #+#    #+#             */
-/*   Updated: 2024/03/21 13:40:43 by ale-tron         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:14:31 by ale-tron         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/pipex_bonus.h"
@@ -32,6 +32,7 @@ static void	open_infile(char **argv)
 		exit(1);
 	if (dup2(fd_in, STDIN_FILENO) == -1)
 		exit (1);
+	close(fd_in);
 }
 
 static void	create_heredoc_file(char **argv)
@@ -58,6 +59,7 @@ static void	create_heredoc_file(char **argv)
 	fd_heredoc = open(".heredoc", O_RDONLY);
 	if (dup2(fd_heredoc, STDIN_FILENO) == -1)
 		exit (1);
+	close(fd_heredoc);
 }
 
 static void	make_pipe(char **argv, char **envp, int i)
@@ -111,6 +113,7 @@ int	main(int argc, char **argv, char **envp)
 		ft_error(argv[argc - 1], errno);
 	if (fd_out == -1 || (dup2(fd_out, STDOUT_FILENO) == -1))
 		exit(1);
+	close(fd_out);
 	exec_cmd(argv[i], envp);
 	return (0);
 }
